@@ -6,24 +6,24 @@ from core import CardSet, Card, Deck, BasePlayer, BruteForcePlayer, Game
 
 class SetTestCase(unittest.TestCase):
     def test_empty_set(self):
-        s = CardSet([])
-        self.assertEqual(s.is_valid(), False)
+        card_set = CardSet([])
+        self.assertEqual(card_set.is_valid(), False)
 
     def test_valid_identical(self):
-        s = CardSet([Card([1]), Card([1]), Card([1])])
-        self.assertEqual(s.is_valid(), True)
+        card_set = CardSet([Card([1]), Card([1]), Card([1])])
+        self.assertEqual(card_set.is_valid(), True)
 
     def test_valid_different(self):
-        s = CardSet([Card([1]), Card([2]), Card([3])])
-        self.assertEqual(s.is_valid(), True)
+        card_set = CardSet([Card([1]), Card([2]), Card([3])])
+        self.assertEqual(card_set.is_valid(), True)
 
     def test_invalid(self):
-        s = CardSet([Card([1]), Card([2]), Card([2])])
-        self.assertEqual(s.is_valid(), False)
+        card_set = CardSet([Card([1]), Card([2]), Card([2])])
+        self.assertEqual(card_set.is_valid(), False)
 
     def test_valid_multiple_features(self):
-        s = CardSet([Card([1, 1]), Card([2, 1]), Card([3, 1])])
-        self.assertEqual(s.is_valid(), True)
+        card_set = CardSet([Card([1, 1]), Card([2, 1]), Card([3, 1])])
+        self.assertEqual(card_set.is_valid(), True)
 
 
 class DeckTestCase(unittest.TestCase):
