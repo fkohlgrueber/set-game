@@ -15,4 +15,6 @@ The main purpose of writing this project was to practice using advanced
 - f-Strings
 - typing information
 - itertools
-
+- travis CI
+- codecov.io
+- codeclimate
