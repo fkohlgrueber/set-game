@@ -119,9 +119,9 @@ class BruteForcePlayerTestCase(unittest.TestCase):
 
 class GameTestCase(unittest.TestCase):
     def test_game(self):
-        g = Game(num_features=2, num_options_per_feature=3)
-        g.deck._card_stack.sort()
-        sets = g.play(BruteForcePlayer(3))
+        game = Game(num_features=2, num_options_per_feature=3)
+        game.deck._card_stack.sort()
+        sets = game.play(BruteForcePlayer(3))
 
         exp = [CardSet([Card([0, 0]), Card([0, 1]), Card([0, 2])]),
                CardSet([Card([1, 0]), Card([1, 1]), Card([1, 2])]),
@@ -129,9 +129,9 @@ class GameTestCase(unittest.TestCase):
         self.assertEqual(sets, exp)
 
     def test_game_multiple_matches(self):
-        g = Game(num_features=2, num_options_per_feature=3)
-        g.deck._card_stack = [Card([2, 0]), Card([1, 0]), Card([0, 1]), Card([0, 2]), Card([0, 0])]
-        sets = g.play(BruteForcePlayer(3))
+        game = Game(num_features=2, num_options_per_feature=3)
+        game.deck._card_stack = [Card([2, 0]), Card([1, 0]), Card([0, 1]), Card([0, 2]), Card([0, 0])]
+        sets = game.play(BruteForcePlayer(3))
 
         exp = [CardSet([Card([2, 0]), Card([1, 0]), Card([0, 0])])]
         self.assertEqual(sets, exp)
