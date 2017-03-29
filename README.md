@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/fkohlgrueber/set-game.svg?branch=master)](https://travis-ci.org/fkohlgrueber/set-game)
-
+[![Code Health](https://landscape.io/github/fkohlgrueber/set-game/master/landscape.svg?style=flat)](https://landscape.io/github/fkohlgrueber/set-game/master)
 # Set card game
 
 This is a small python project implementing the
