@@ -28,35 +28,35 @@ class SetTestCase(unittest.TestCase):
 
 class DeckTestCase(unittest.TestCase):
     def test_num_cards(self):
-        d = Deck(num_features=4, num_options_per_feature=3)
-        self.assertEqual(len(d._card_stack), 81)
+        deck = Deck(num_features=4, num_options_per_feature=3)
+        self.assertEqual(len(deck._card_stack), 81)
 
     def test_cards_2_2(self):
-        d = Deck(num_features=2, num_options_per_feature=2)
-        self.assertEqual(sorted(d._card_stack), [(0, 0), (0, 1), (1, 0), (1, 1)])
+        deck = Deck(num_features=2, num_options_per_feature=2)
+        self.assertEqual(sorted(deck._card_stack), [(0, 0), (0, 1), (1, 0), (1, 1)])
 
     def test_cards_1_3(self):
-        d = Deck(num_features=1, num_options_per_feature=3)
-        self.assertEqual(sorted(d._card_stack), [(0,), (1,), (2,)])
+        deck = Deck(num_features=1, num_options_per_feature=3)
+        self.assertEqual(sorted(deck._card_stack), [(0,), (1,), (2,)])
 
     def test_cards_3_1(self):
-        d = Deck(num_features=3, num_options_per_feature=1)
-        self.assertEqual(sorted(d._card_stack), [(0, 0, 0)])
+        deck = Deck(num_features=3, num_options_per_feature=1)
+        self.assertEqual(sorted(deck._card_stack), [(0, 0, 0)])
 
     def test_cards_3_2(self):
-        d = Deck(num_features=3, num_options_per_feature=2)
+        deck = Deck(num_features=3, num_options_per_feature=2)
         exp = [(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1),
                (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)]
-        self.assertEqual(sorted(d._card_stack), exp)
+        self.assertEqual(sorted(deck._card_stack), exp)
 
     def test_get_cards(self):
-        d = Deck(num_features=3, num_options_per_feature=2)
-        exp = deepcopy(d._card_stack)
+        deck = Deck(num_features=3, num_options_per_feature=2)
+        exp = deepcopy(deck._card_stack)
 
         for i in range(len(exp)):
-            self.assertEqual(d.next_card(), exp[i])
+            self.assertEqual(deck.next_card(), exp[i])
 
-        self.assertIsNone(d.next_card())
+        self.assertIsNone(deck.next_card())
 
 
 class BasePlayerTestCase(unittest.TestCase):
@@ -78,43 +78,43 @@ class BruteForcePlayerTestCase(unittest.TestCase):
         self.player_class = BruteForcePlayer
 
     def test_no_cards(self):
-        p = self.player_class(num_options_per_feature=3)
-        self.assertEqual(p.calc_sets(), [])
+        player = self.player_class(num_options_per_feature=3)
+        self.assertEqual(player.calc_sets(), [])
 
     def test_not_enough_cards(self):
-        p = self.player_class(num_options_per_feature=3)
-        p.show_cards([Card([1]), Card([1])])
-        self.assertEqual(p.calc_sets(), [])
+        player = self.player_class(num_options_per_feature=3)
+        player.show_cards([Card([1]), Card([1])])
+        self.assertEqual(player.calc_sets(), [])
 
     def test_no_matching_set(self):
-        p = self.player_class(num_options_per_feature=3)
-        p.show_cards([Card([0]), Card([1]), Card([1])])
-        self.assertEqual(p.calc_sets(), [])
+        player = self.player_class(num_options_per_feature=3)
+        player.show_cards([Card([0]), Card([1]), Card([1])])
+        self.assertEqual(player.calc_sets(), [])
 
     def test_matching_set(self):
-        p = self.player_class(num_options_per_feature=3)
-        p.show_cards([Card([0]), Card([1]), Card([2])])
+        player = self.player_class(num_options_per_feature=3)
+        player.show_cards([Card([0]), Card([1]), Card([2])])
         exp = [CardSet([Card([0]), Card([1]), Card([2])])]
-        self.assertEqual(p.calc_sets(), exp)
+        self.assertEqual(player.calc_sets(), exp)
 
     def test_multiple_matching_sets(self):
-        p = self.player_class(num_options_per_feature=3)
-        p.show_cards([Card([0, 0]), Card([1, 0]), Card([0, 1]), Card([2, 0]), Card([0, 2])])
+        player = self.player_class(num_options_per_feature=3)
+        player.show_cards([Card([0, 0]), Card([1, 0]), Card([0, 1]), Card([2, 0]), Card([0, 2])])
         exp = [CardSet([Card([0, 0]), Card([1, 0]), Card([2, 0])]),
                CardSet([Card([0, 0]), Card([0, 1]), Card([0, 2])])]
-        self.assertEqual(p.calc_sets(), exp)
+        self.assertEqual(player.calc_sets(), exp)
 
     def test_remove_cards(self):
-        p = self.player_class(num_options_per_feature=3)
+        player = self.player_class(num_options_per_feature=3)
         card_a = Card([1, 0])
-        p.show_cards([Card([0, 0]), card_a, Card([0, 1]), Card([2, 0]), Card([0, 2])])
-        p.remove_cards([card_a])
+        player.show_cards([Card([0, 0]), card_a, Card([0, 1]), Card([2, 0]), Card([0, 2])])
+        player.remove_cards([card_a])
         exp = [CardSet([Card([0, 0]), Card([0, 1]), Card([0, 2])])]
-        self.assertEqual(p.calc_sets(), exp)
+        self.assertEqual(player.calc_sets(), exp)
 
     def test_remove_card_error(self):
-        p = self.player_class(num_options_per_feature=3)
-        self.assertRaises(ValueError, p.remove_cards, [Card([0, 0])])
+        player = self.player_class(num_options_per_feature=3)
+        self.assertRaises(ValueError, player.remove_cards, [Card([0, 0])])
 
 
 class GameTestCase(unittest.TestCase):
