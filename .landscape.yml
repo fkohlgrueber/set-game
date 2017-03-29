@@ -8,4 +8,4 @@ requirements:
 ignore-paths:
 ignore-patterns:
 python-targets:
-  - 3.6
+  - 3
