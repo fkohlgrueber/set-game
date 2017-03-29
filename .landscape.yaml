@@ -2,10 +2,6 @@ doc-warnings: true
 test-warnings: true
 strictness: veryhigh
 max-line-length: 120
-uses:
 autodetect: true
-requirements:
-ignore-paths:
-ignore-patterns:
 python-targets:
-  - 3
+  - 3.6
