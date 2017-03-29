@@ -5,8 +5,8 @@ python:
 #  - "nightly" # currently points to 3.7-dev
 # command to install dependencies
 # install: "pip install -r requirements.txt"
+install:
+  - pip install codecov
+
 # command to run tests
-script: python -m unittest discover
-addons:
-    code_climate:
-        repo_token: e08b041645f3c60797d2556d0bf9636b64d2b27e9d9b96830f48833bb2cc2d47
+script: coverage run -m unittest discover
