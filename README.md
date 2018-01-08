@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/fkohlgrueber/set-game/branch/master/graph/badge.svg)](https://codecov.io/gh/fkohlgrueber/set-game)
 [![Code Climate](https://codeclimate.com/github/fkohlgrueber/set-game/badges/gpa.svg)](https://codeclimate.com/github/fkohlgrueber/set-game)
 
-[![](https://tokei.rs/b1/github/fkohlgrueber/matplotlib)](https://github.com/Aaronepower/tokei).
+[![](https://tokei.rs/b1/github/rust-lang/rust)](https://github.com/Aaronepower/tokei).
 # Set card game
 
 This is a small python project implementing the
